@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Entity
-@Table(name = "persons")
+@Table(name = "messages")
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -22,40 +22,27 @@ import java.util.Set;
 @TypeDefs({
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
-public class Person {
-/*
+public class Message {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String name;
-
-    @ManyToMany (cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-    //@JsonIgnore
-    @JoinTable(
-            name = "topic_likes",
-            joinColumns = @JoinColumn(name = "person_id"),
-            inverseJoinColumns = @JoinColumn(name = "topic_id"))
-    private Set<Topic> topics = new HashSet<>();
-
-    //@JsonIgnore
-    @OneToMany(mappedBy = "trust_person")
-    private Set<Connection> connections = new HashSet<>();
-
-    //@JsonIgnore
-    @OneToMany(mappedBy = "person")
-    private Set<Connection> connectionsOf = new HashSet<>();
-
-*/
-
-    @Id
-    private String id;
+    @Column(name = "text")
+    private String text;
 
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
     private Set<String> topics = new HashSet<>();
 
+    @Column(name = "from_person_id")
+    private String from_person_id;
+
+    @Column(name = "min_trust_level")
+    private Integer min_trust_level;
+
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
-    private Map<String, Integer> connections = new HashMap<>();
+    private Map<String, Set<String>> destinations = new HashMap<>();
+
 }

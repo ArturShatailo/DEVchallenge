@@ -1,8 +1,6 @@
-package online.task.devchallenge.domain.dto;
+package online.task.devchallenge.domain.clientDto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
-import online.task.devchallenge.domain.Topic;
 
 import java.util.Set;
 
