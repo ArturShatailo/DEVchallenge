@@ -1,14 +1,11 @@
 package online.task.devchallenge.service;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import online.task.devchallenge.domain.Person;
 import online.task.devchallenge.repository.PersonRepository;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -61,17 +58,5 @@ public class PersonServiceBean {
 
         return trust_connections;
     }
-
-//    public Person getById(Integer id) {
-//        Person p = personRepository.findById(id)
-//                .orElseThrow(() -> new EntityNotFoundException("Person not found with id = " + id));
-//        return p;
-//    }
-
-    /*public Person getPerson(Person person) {
-        Person p = personRepository.findById(person.getId())
-                .orElseThrow(() -> new EntityNotFoundException("Person not found with id = " + person.getId()));
-        return p;
-    }*/
 
 }

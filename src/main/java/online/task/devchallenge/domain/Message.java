@@ -5,11 +5,8 @@ import lombok.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
-
 import javax.persistence.*;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -43,6 +40,12 @@ public class Message {
 
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
-    private Map<String, Set<String>> destinations = new HashMap<>();
+    private Set<String> destinations = new HashSet<>();
 
+    public Message(String text, Set<String> topics, String from_person_id, Integer min_trust_level) {
+        this.text = text;
+        this.topics = topics;
+        this.from_person_id = from_person_id;
+        this.min_trust_level = min_trust_level;
+    }
 }
