@@ -162,8 +162,8 @@ public class MessageServiceBean {
                     visited.add(p);
 
                     if (checkReceiverTopics(p, messageDirected.getTopics())) {
-                        return paths.get(paths.size()-1);
-                        //return visited;
+                        //return paths.get(paths.size()-1);
+                        return visited;
                     }
                     queue.add(p);
                 }
