@@ -85,28 +85,37 @@ public class MessageServiceBean {
     public Map<String, String> directedBroadcasting(MessageDirected messageDirected) {
 
         Map<String, String> directedMessageResponse = new HashMap<>();
-        Graph graph = new Graph();
 
-        personRepository.findAll()
-                .forEach( p -> graph.addEdge(p, defineConnections(p, messageDirected.getMin_trust_level())));
+        Graph graph = createAndFillGraph(messageDirected.getMin_trust_level());
+        //Graph graph = new Graph();
 
-        List<LinkedList<String>> paths = breadthFirstTraversal(
+//        personRepository.findAll()
+//                .forEach( p -> graph.addEdge(p, defineConnections(p, messageDirected.getMin_trust_level())));
+
+        LinkedList<String> paths = breadthFirstTraversal(
                 messageDirected.getTopics(),
                 graph,
                 personRepository.findById(messageDirected.getFrom_person_id())
                         .orElse(null)
         );
 
-        messageDirected.setPath(paths.get(paths.size()-1));
+        messageDirected.setPath(paths);
         messageDirectedRepository.save(messageDirected);
 
         String from = messageDirected.getFrom_person_id();
-        String path = paths.get(paths.size()-1).toString();
+        String path = paths.toString();
 
         directedMessageResponse.put("from", from);
         directedMessageResponse.put("path", path);
 
         return directedMessageResponse;
+    }
+
+    private Graph createAndFillGraph(Integer trust_level) {
+        Graph graph = new Graph();
+        personRepository.findAll()
+                .forEach( p -> graph.addEdge(p, defineConnections(p, trust_level)));
+        return graph;
     }
 
     private List<Person> defineConnections(Person p, Integer m) {
@@ -131,7 +140,7 @@ public class MessageServiceBean {
     }
 
 
-    public List<LinkedList<String>> breadthFirstTraversal(Set<String> topics, Graph graph, Person root) {
+    public LinkedList<String> breadthFirstTraversal(Set<String> topics, Graph graph, Person root) {
 
         if (root == null) return null;
 
@@ -167,14 +176,14 @@ public class MessageServiceBean {
                     visited.add(p);
 
                     if (checkReceiverTopics(p, topics)) {
-                        return paths;
-                        //return visited;
+                        currentPath.add(p.getId());
+                        return currentPath;
                     }
                     queue.add(p);
                 }
             }
         }
-        return paths;
+        return new LinkedList<>();
     }
 
     private boolean checkReceiverTopics(Person person, Set<String> topics) {
