@@ -137,7 +137,7 @@ public class MessageServiceBean {
     }
 
 
-    public LinkedList<String> breadthFirstTraversal(Set<String> topics, Graph graph, Person root) {
+    private LinkedList<String> breadthFirstTraversal(Set<String> topics, Graph graph, Person root) {
 
         if (root == null) return null;
 
@@ -189,7 +189,6 @@ public class MessageServiceBean {
     }
 
     private Set<String> checkReceiversTopics(Set<String> receiversIDs, Set<String> topics) {
-
         return receiversIDs.stream()
                 .filter(id -> checkCurrentReceiver(id, topics))
                 .collect(Collectors.toSet());
