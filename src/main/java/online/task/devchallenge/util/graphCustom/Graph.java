@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import online.task.devchallenge.domain.Person;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,12 +18,8 @@ public class Graph {
 
     //receive all connections allowed
     public void addEdge(Person p1, List<Person> connections) {
-
         adjVertices.put(p1, new ArrayList<>());
-
-        for (Person p : connections) {
-            adjVertices.get(p1).add(p);
-        }
+        for (Person p : connections) adjVertices.get(p1).add(p);
     }
 
 }

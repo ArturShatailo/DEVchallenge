@@ -11,17 +11,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+@Data
 @Entity
 @Table(name = "persons")
-@AllArgsConstructor
-@NoArgsConstructor
-@Setter
-@Getter
-@ToString
 @TypeDefs({
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
-@Data
 public class Person {
 
     @Id

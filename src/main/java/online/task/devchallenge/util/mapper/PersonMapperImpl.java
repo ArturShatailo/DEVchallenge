@@ -47,18 +47,4 @@ public class PersonMapperImpl implements PersonMapper{
         return personViewDTO;
     }
 
-    @Override
-    public Person personToObject(PersonViewDTO dto) {
-
-        if (dto == null) return null;
-
-        Person person = new Person();
-
-        person.setId( dto.getId() );
-        person.setTopics( dto.getTopics() );
-        person.setConnections(dto.getConnections());
-
-        return person;
-    }
-
 }

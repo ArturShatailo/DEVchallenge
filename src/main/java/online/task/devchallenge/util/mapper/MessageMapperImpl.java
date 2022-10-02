@@ -27,20 +27,6 @@ public class MessageMapperImpl implements MessageMapper{
     }
 
     @Override
-    public MessageDTO messageDirectToDTO(Message object) {
-        if (object == null) return null;
-
-        MessageDTO messageDTO = new MessageDTO();
-
-        messageDTO.setText( object.getText() );
-        messageDTO.setTopics( object.getTopics() );
-        messageDTO.setFrom_person_id( object.getFrom_person_id() );
-        messageDTO.setMin_trust_level( object.getMin_trust_level() );
-
-        return messageDTO;
-    }
-
-    @Override
     public MessageDirected messageDirectedToObject(MessageDTO dto) {
         if (dto == null) return null;
 
@@ -52,31 +38,6 @@ public class MessageMapperImpl implements MessageMapper{
         messageDirected.setMin_trust_level( dto.getMin_trust_level() );
 
         return messageDirected;
-    }
-
-    @Override
-    public MessageDTO messageDirectToDTO(MessageDirected object) {
-        if (object == null) return null;
-
-        MessageDTO messageDTO = new MessageDTO();
-
-        messageDTO.setText( object.getText() );
-        messageDTO.setTopics( object.getTopics() );
-        messageDTO.setFrom_person_id( object.getFrom_person_id() );
-        messageDTO.setMin_trust_level( object.getMin_trust_level() );
-
-        return messageDTO;
-    }
-
-    @Override
-    public Message messageToObject(MessageResponseDTO dto) {
-        if (dto == null) return null;
-
-        Message message = new Message();
-        message.setDestinations(
-                dto.getDestinations().get(message.getFrom_person_id()));
-
-        return message;
     }
 
     @Override

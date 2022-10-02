@@ -18,6 +18,4 @@ public interface PersonMapper {
 
     PersonViewDTO personToViewDTO(Person object);
 
-    Person personToObject(PersonViewDTO dto);
-
 }

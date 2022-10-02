@@ -15,13 +15,7 @@ public interface MessageMapper {
 
     Message messageToObject(MessageDTO dto);
 
-    MessageDTO messageDirectToDTO(Message message);
-
     MessageDirected messageDirectedToObject(MessageDTO dto);
-
-    MessageDTO messageDirectToDTO(MessageDirected message);
-
-    Message messageToObject(MessageResponseDTO dto);
 
     MessageResponseDTO messageToResponseDTO(Message message);
 }

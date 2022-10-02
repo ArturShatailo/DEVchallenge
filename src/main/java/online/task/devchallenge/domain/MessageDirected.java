@@ -12,11 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "messages_directed")
-@AllArgsConstructor
-@NoArgsConstructor
-@Setter
-@Getter
-@ToString
+@Data
 @TypeDefs({
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
