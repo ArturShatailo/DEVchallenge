@@ -16,7 +16,8 @@ public class Graph {
 
     private Map<Person, List<Person>> adjVertices = new HashMap<>();
 
-    //receive all connections allowed
+    //creates and adds "Edges" as a Person objects for this Graph according to the
+    //received Person and it's connections.
     public void addEdge(Person p1, List<Person> connections) {
         adjVertices.put(p1, new ArrayList<>());
         for (Person p : connections) adjVertices.get(p1).add(p);
