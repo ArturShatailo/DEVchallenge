@@ -77,7 +77,7 @@ public class MessageServiceBean {
 
             if (filterIds.size() == 0) return response;
 
-            messageRepository.save(message);
+            createMessage(message);
 
             response.put(message.getFrom_person_id(), message.getDestinations());
             response.putAll(
