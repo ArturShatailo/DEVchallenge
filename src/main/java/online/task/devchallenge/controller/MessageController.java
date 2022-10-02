@@ -2,7 +2,7 @@ package online.task.devchallenge.controller;
 
 import lombok.AllArgsConstructor;
 import online.task.devchallenge.domain.Message;
-import online.task.devchallenge.domain.messageDto.MessageResponseDTO;
+import online.task.devchallenge.domain.MessageDirected;
 import online.task.devchallenge.domain.messageDto.MessageDTO;
 import online.task.devchallenge.service.MessageServiceBean;
 import online.task.devchallenge.util.mapper.MessageMapper;
@@ -22,18 +22,19 @@ public class MessageController implements MessageSendingEndpointsMethods{
     private final MessageServiceBean messageServiceBean;
 
     @Override
-    @PostMapping("/messages")
+    @PostMapping("/trusted/messages")
     @ResponseStatus(HttpStatus.CREATED)
-    public Map<String, Set<String>> broadcastMessage(@RequestBody MessageDTO messageDTO) {
+    public Map<String, Set<String>> broadcastMessageOnlyTrusted(@RequestBody MessageDTO messageDTO) {
         Message message = messageMapper.messageToObject(messageDTO);
         return messageMapper
-                .messageToResponseDTO(messageServiceBean.broadcast(message))
+                .messageToResponseDTO(messageServiceBean.broadcastToTrusted(message))
                 .getDestinations();
     }
 
-    @PostMapping("/messages1")
+    @Override
+    @PostMapping("/messages")
     @ResponseStatus(HttpStatus.CREATED)
-    public Map<String, Set<String>> broadcastMessage1(@RequestBody MessageDTO messageDTO) {
+    public Map<String, Set<String>> broadcastMessage(@RequestBody MessageDTO messageDTO) {
         Message message = messageMapper.messageToObject(messageDTO);
         return messageServiceBean.broadcasting(message, new HashSet<>(), new HashMap<>());
     }
@@ -41,8 +42,9 @@ public class MessageController implements MessageSendingEndpointsMethods{
     @Override
     @PostMapping("/path")
     @ResponseStatus(HttpStatus.CREATED)
-    public Map<String, Set<String>> directedMessage(@RequestBody MessageDTO messageDTO) {
-        return null;
+    public Map<String, String> directedMessage(@RequestBody MessageDTO messageDTO) {
+        MessageDirected messageDirected = messageMapper.messageDirectedToObject(messageDTO);
+        return messageServiceBean.directedBroadcasting22(messageDirected);
     }
 
 }

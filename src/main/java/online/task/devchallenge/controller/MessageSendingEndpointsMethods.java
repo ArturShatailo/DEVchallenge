@@ -10,10 +10,13 @@ import java.util.Set;
 
 public interface MessageSendingEndpointsMethods {
 
+    @PostMapping("/trusted/messages")
+    Map<String, Set<String>> broadcastMessageOnlyTrusted(@RequestBody MessageDTO messageDTO);
+
     @PostMapping("/messages")
     Map<String, Set<String>> broadcastMessage(@RequestBody MessageDTO messageDTO);
 
     @PostMapping("/path")
-    Map<String, Set<String>> directedMessage(@RequestBody MessageDTO messageDTO);
+    Map<String, String> directedMessage(@RequestBody MessageDTO messageDTO);
 
 }

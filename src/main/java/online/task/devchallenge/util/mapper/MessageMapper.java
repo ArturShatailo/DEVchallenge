@@ -1,6 +1,7 @@
 package online.task.devchallenge.util.mapper;
 
 import online.task.devchallenge.domain.Message;
+import online.task.devchallenge.domain.MessageDirected;
 import online.task.devchallenge.domain.messageDto.MessageResponseDTO;
 import online.task.devchallenge.domain.messageDto.MessageDTO;
 import org.mapstruct.InjectionStrategy;
@@ -14,7 +15,11 @@ public interface MessageMapper {
 
     Message messageToObject(MessageDTO dto);
 
-    MessageDTO messageToDTO(Message message);
+    MessageDTO messageDirectToDTO(Message message);
+
+    MessageDirected messageDirectedToObject(MessageDTO dto);
+
+    MessageDTO messageDirectToDTO(MessageDirected message);
 
     Message messageToObject(MessageResponseDTO dto);
 

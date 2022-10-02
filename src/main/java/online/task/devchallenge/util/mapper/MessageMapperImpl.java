@@ -1,6 +1,7 @@
 package online.task.devchallenge.util.mapper;
 
 import online.task.devchallenge.domain.Message;
+import online.task.devchallenge.domain.MessageDirected;
 import online.task.devchallenge.domain.messageDto.MessageResponseDTO;
 import online.task.devchallenge.domain.messageDto.MessageDTO;
 import org.springframework.stereotype.Component;
@@ -26,7 +27,35 @@ public class MessageMapperImpl implements MessageMapper{
     }
 
     @Override
-    public MessageDTO messageToDTO(Message object) {
+    public MessageDTO messageDirectToDTO(Message object) {
+        if (object == null) return null;
+
+        MessageDTO messageDTO = new MessageDTO();
+
+        messageDTO.setText( object.getText() );
+        messageDTO.setTopics( object.getTopics() );
+        messageDTO.setFrom_person_id( object.getFrom_person_id() );
+        messageDTO.setMin_trust_level( object.getMin_trust_level() );
+
+        return messageDTO;
+    }
+
+    @Override
+    public MessageDirected messageDirectedToObject(MessageDTO dto) {
+        if (dto == null) return null;
+
+        MessageDirected messageDirected = new MessageDirected();
+
+        messageDirected.setText( dto.getText() );
+        messageDirected.setTopics( dto.getTopics() );
+        messageDirected.setFrom_person_id( dto.getFrom_person_id() );
+        messageDirected.setMin_trust_level( dto.getMin_trust_level() );
+
+        return messageDirected;
+    }
+
+    @Override
+    public MessageDTO messageDirectToDTO(MessageDirected object) {
         if (object == null) return null;
 
         MessageDTO messageDTO = new MessageDTO();

@@ -21,6 +21,7 @@ import java.util.Set;
 @TypeDefs({
         @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
+@Data
 public class Person {
 
     @Id
