@@ -23,6 +23,15 @@ public class MessageServiceBean {
 
     private final PersonRepository personRepository;
 
+
+    public MessageDirected createMessageDirected(MessageDirected messageDirected) {
+        return messageDirectedRepository.save(messageDirected);
+    }
+
+    public Message createMessage(Message message) {
+        return messageRepository.save(message);
+    }
+
     public Message broadcastToTrusted(Message message) {
 
         Person personFrom = personRepository.findById(message.getFrom_person_id())
@@ -38,7 +47,7 @@ public class MessageServiceBean {
         message.setDestinations(
                 checkReceiversTopics(receiversIDs, message.getTopics()));
 
-        return messageRepository.save(message);
+        return createMessage(message);
     }
 
 
@@ -84,30 +93,25 @@ public class MessageServiceBean {
 
     public Map<String, String> directedBroadcasting(MessageDirected messageDirected) {
 
-        Map<String, String> directedMessageResponse = new HashMap<>();
-
         Graph graph = createAndFillGraph(messageDirected.getMin_trust_level());
-        //Graph graph = new Graph();
 
-//        personRepository.findAll()
-//                .forEach( p -> graph.addEdge(p, defineConnections(p, messageDirected.getMin_trust_level())));
-
-        LinkedList<String> paths = breadthFirstTraversal(
-                messageDirected.getTopics(),
+        LinkedList<String> paths = findTheShortestPathInGraph(
                 graph,
-                personRepository.findById(messageDirected.getFrom_person_id())
-                        .orElse(null)
-        );
+                messageDirected.getTopics(),
+                messageDirected.getFrom_person_id());
 
         messageDirected.setPath(paths);
-        messageDirectedRepository.save(messageDirected);
+        createMessageDirected(messageDirected);
 
-        String from = messageDirected.getFrom_person_id();
-        String path = paths.toString();
+        return createDirectedMessageResponse(
+                messageDirected.getFrom_person_id(),
+                paths.toString());
+    }
 
+    private Map<String, String> createDirectedMessageResponse(String from, String path) {
+        Map<String, String> directedMessageResponse = new HashMap<>();
         directedMessageResponse.put("from", from);
         directedMessageResponse.put("path", path);
-
         return directedMessageResponse;
     }
 
@@ -116,6 +120,15 @@ public class MessageServiceBean {
         personRepository.findAll()
                 .forEach( p -> graph.addEdge(p, defineConnections(p, trust_level)));
         return graph;
+    }
+
+    private LinkedList<String> findTheShortestPathInGraph(Graph graph, Set<String> topics, String from) {
+        return breadthFirstTraversal(
+                topics,
+                graph,
+                personRepository.findById(from)
+                        .orElse(null)
+        );
     }
 
     private List<Person> defineConnections(Person p, Integer m) {
