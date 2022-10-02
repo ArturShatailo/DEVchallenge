@@ -6,6 +6,7 @@ import online.task.devchallenge.repository.PersonRepository;
 import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -21,6 +22,10 @@ public class PersonServiceBean {
     public Person getPersonById(String id) {
         return personRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Person not found with id = " + id));
+    }
+
+    public List<Person> gerAllPersons(){
+        return personRepository.findAll();
     }
 
     public Map<String, Integer> updateConnections(String id, Map<String, Integer> trust_connections) {
