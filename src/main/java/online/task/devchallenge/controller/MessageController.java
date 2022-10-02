@@ -44,7 +44,7 @@ public class MessageController implements MessageSendingEndpointsMethods{
     @ResponseStatus(HttpStatus.CREATED)
     public Map<String, String> directedMessage(@RequestBody MessageDTO messageDTO) {
         MessageDirected messageDirected = messageMapper.messageDirectedToObject(messageDTO);
-        return messageServiceBean.directedBroadcasting22(messageDirected);
+        return messageServiceBean.directedBroadcasting(messageDirected);
     }
 
 }

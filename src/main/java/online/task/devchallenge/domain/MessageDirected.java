@@ -43,13 +43,6 @@ public class MessageDirected {
 
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
-    private List<String> path = new LinkedList<>();
+    private List<String> path;
 
-    public MessageDirected(String text, Set<String> topics, String from_person_id, Integer min_trust_level, List<String> path) {
-        this.text = text;
-        this.topics = topics;
-        this.from_person_id = from_person_id;
-        this.min_trust_level = min_trust_level;
-        this.path = path;
-    }
 }
