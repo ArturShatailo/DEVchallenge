@@ -28,6 +28,7 @@ public class Message {
     @Column(name = "text")
     private String text;
 
+    //Set of String values as topics according to which the receivers should be filtered on
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
     private Set<String> topics = new HashSet<>();
@@ -35,9 +36,11 @@ public class Message {
     @Column(name = "from_person_id")
     private String from_person_id;
 
+    //Minimum of trust level needed to send this message
     @Column(name = "min_trust_level")
     private Integer min_trust_level;
 
+    //Set of String values that are ID of each Person entity that should receive this message
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
     private Set<String> destinations = new HashSet<>();

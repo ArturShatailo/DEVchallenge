@@ -22,10 +22,12 @@ public class Person {
     @Id
     private String id;
 
+    //Set of String values as topics according to which the received message should be filtered on
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
     private Set<String> topics = new HashSet<>();
 
+    //Map collection of (ID -> trust level) pairs that show Person entities that is connected and trust-evaluated by this Person
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
     private Map<String, Integer> connections = new HashMap<>();
