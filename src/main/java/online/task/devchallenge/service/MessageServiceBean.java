@@ -43,8 +43,16 @@ public class MessageServiceBean {
         return createMessage(message);
     }
 
+    public Map<String, String> broadcasting(Message message) {
 
-    public Map<String, Set<String>> broadcasting(Message message, Set<String> stack, Map<String, Set<String>> response) {
+        Map<String, Set<String>> response = broadcastToChainOfPeople(message, new HashSet<>(), new HashMap<>());
+        Map<String, String> resp = new HashMap<>();
+        response.forEach((a, b) -> resp.put(a, b.toString()));
+
+        return resp;
+    }
+
+    public Map<String, Set<String>> broadcastToChainOfPeople(Message message, Set<String> stack, Map<String, Set<String>> response) {
 
         stack.add(message.getFrom_person_id());
 
@@ -71,7 +79,7 @@ public class MessageServiceBean {
 
             response.put(message.getFrom_person_id(), message.getDestinations());
             response.putAll(
-                    broadcasting(
+                    broadcastToChainOfPeople(
                             new Message(message.getText(), message.getTopics(), a, message.getMin_trust_level()),
                             stack,
                             response));

@@ -24,7 +24,7 @@ public class MessageController implements MessageSendingEndpointsMethods{
     @Override
     @PostMapping("/trusted/messages")
     @ResponseStatus(HttpStatus.CREATED)
-    public Map<String, Set<String>> broadcastMessageOnlyTrusted(@RequestBody MessageDTO messageDTO) {
+    public Map<String, String> broadcastMessageOnlyTrusted(@RequestBody MessageDTO messageDTO) {
         Message message = messageMapper.messageToObject(messageDTO);
         return messageMapper
                 .messageToResponseDTO(messageServiceBean.broadcastToTrusted(message))
@@ -34,9 +34,9 @@ public class MessageController implements MessageSendingEndpointsMethods{
     @Override
     @PostMapping("/messages")
     @ResponseStatus(HttpStatus.CREATED)
-    public Map<String, Set<String>> broadcastMessage(@RequestBody MessageDTO messageDTO) {
+    public Map<String, String> broadcastMessage(@RequestBody MessageDTO messageDTO) {
         Message message = messageMapper.messageToObject(messageDTO);
-        return messageServiceBean.broadcasting(message, new HashSet<>(), new HashMap<>());
+        return messageServiceBean.broadcasting(message);
     }
 
     @Override

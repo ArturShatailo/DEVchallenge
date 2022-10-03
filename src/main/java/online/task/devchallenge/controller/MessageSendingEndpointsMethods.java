@@ -4,7 +4,6 @@ import online.task.devchallenge.domain.messageDto.MessageDTO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import java.util.Map;
-import java.util.Set;
 
 public interface MessageSendingEndpointsMethods {
 
@@ -16,7 +15,7 @@ public interface MessageSendingEndpointsMethods {
      * @return A map with pair (sender -> set of receivers).
      */
     @PostMapping("/trusted/messages")
-    Map<String, Set<String>> broadcastMessageOnlyTrusted(@RequestBody MessageDTO messageDTO);
+    Map<String, String> broadcastMessageOnlyTrusted(@RequestBody MessageDTO messageDTO);
 
 
     /**
@@ -28,7 +27,7 @@ public interface MessageSendingEndpointsMethods {
      * one by one in chains and with appropriate topics and their receivers as sets.
      */
     @PostMapping("/messages")
-    Map<String, Set<String>> broadcastMessage(@RequestBody MessageDTO messageDTO);
+    Map<String, String> broadcastMessage(@RequestBody MessageDTO messageDTO);
 
     /**
      * This method takes a messageDTO object as a parameter and sends message to the nearest person

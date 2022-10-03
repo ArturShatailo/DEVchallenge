@@ -7,7 +7,6 @@ import online.task.devchallenge.domain.messageDto.MessageDTO;
 import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 @Component
 public class MessageMapperImpl implements MessageMapper{
@@ -46,8 +45,8 @@ public class MessageMapperImpl implements MessageMapper{
         if (object == null) return null;
 
         MessageResponseDTO messageResponseDTO = new MessageResponseDTO();
-        Map<String, Set<String>> destinations = new HashMap<>();
-        destinations.put(object.getFrom_person_id(), object.getDestinations());
+        Map<String, String> destinations = new HashMap<>();
+        destinations.put(object.getFrom_person_id(), object.getDestinations().toString());
         messageResponseDTO.setDestinations( destinations );
 
         return messageResponseDTO;
