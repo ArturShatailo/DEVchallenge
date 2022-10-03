@@ -198,7 +198,7 @@
 <div>
     <h3>Conclusion</h3>
     <p></p>
-    <p>As a conclusion I would like to assume that I managed to complete this task using some part of "functional" programming and I'm sure that 
+    <p>As a conclusion I would like to assume that I managed to complete this task using some part of "functional" programming, and I'm sure that 
         the methods could be refactored even more and simplified. However, the task is really liked and interesting and I suppose, 
         useful in social media development. </p>
 </div>
