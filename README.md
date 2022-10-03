@@ -166,7 +166,7 @@
 <div>
     <h3>Swagger</h3>
     <p>After you run this application in you IDE, the swagger will be available by the address: </p>
-    <p><a href=""></a></p>
+    <p><a href="http://localhost:8080/swagger-ui/index.html#/"></a></p>
 </div>
 
 <div>
