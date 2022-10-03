@@ -1,4 +1,4 @@
-package online.task.devchallenge.util.graphCustom;
+package online.task.devchallenge.repository.util.graphCustom;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

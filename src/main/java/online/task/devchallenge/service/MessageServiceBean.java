@@ -6,7 +6,7 @@ import online.task.devchallenge.domain.MessageDirected;
 import online.task.devchallenge.domain.Person;
 import online.task.devchallenge.repository.MessageDirectedRepository;
 import online.task.devchallenge.repository.MessageRepository;
-import online.task.devchallenge.util.graphCustom.Graph;
+import online.task.devchallenge.repository.util.graphCustom.Graph;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -43,13 +43,8 @@ public class MessageServiceBean {
         return createMessage(message);
     }
 
-    public Map<String, String> broadcasting(Message message) {
-
-        Map<String, Set<String>> response = broadcastToChainOfPeople(message, new HashSet<>(), new HashMap<>());
-        Map<String, String> resp = new HashMap<>();
-        response.forEach((a, b) -> resp.put(a, b.toString()));
-
-        return resp;
+    public Map<String, Set<String>> broadcasting(Message message) {
+        return broadcastToChainOfPeople(message, new HashSet<>(), new HashMap<>());
     }
 
     public Map<String, Set<String>> broadcastToChainOfPeople(Message message, Set<String> stack, Map<String, Set<String>> response) {

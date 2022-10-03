@@ -1,4 +1,4 @@
-package online.task.devchallenge.util.mapper;
+package online.task.devchallenge.repository.util.mapper;
 
 import online.task.devchallenge.domain.Message;
 import online.task.devchallenge.domain.MessageDirected;

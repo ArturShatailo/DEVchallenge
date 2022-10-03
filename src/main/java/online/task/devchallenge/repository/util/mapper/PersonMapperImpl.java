@@ -1,4 +1,4 @@
-package online.task.devchallenge.util.mapper;
+package online.task.devchallenge.repository.util.mapper;
 
 import online.task.devchallenge.domain.Person;
 import online.task.devchallenge.domain.clientDto.PersonSaveDTO;
@@ -42,7 +42,7 @@ public class PersonMapperImpl implements PersonMapper{
 
         personViewDTO.setId( object.getId() );
         personViewDTO.setTopics( object.getTopics() );
-        personViewDTO.setConnections(object.getConnections());
+        personViewDTO.setConnections(object.getConnections().toString());
 
         return personViewDTO;
     }

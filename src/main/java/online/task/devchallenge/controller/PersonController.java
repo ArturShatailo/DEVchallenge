@@ -1,11 +1,12 @@
 package online.task.devchallenge.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import online.task.devchallenge.domain.Person;
 import online.task.devchallenge.domain.clientDto.PersonSaveDTO;
 import online.task.devchallenge.domain.clientDto.PersonViewDTO;
 import online.task.devchallenge.service.PersonServiceBean;
-import online.task.devchallenge.util.mapper.PersonMapper;
+import online.task.devchallenge.repository.util.mapper.PersonMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.Map;
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
+@Tag(name = "Person API", description = "Person API")
 public class PersonController implements PersonCrudEndpointsMethods {
 
     private final PersonMapper personConverter;
