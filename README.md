@@ -9,34 +9,38 @@
 <div>
     <h3>Content list</h3>
     <ul>
-        <li>
-            <p>Overview</p>
-            <p>Technologies used</p>
-            <p>Files structure</p>
-            <p>Database structure</p>
-            <p>Endpoints demonstration Postman</p>
-            <p>Endpoints demonstration Swagger</p>
-            <p>Tests description</p>
-            <p>Description of principles</p>
-            <p>Conclusion</p>
-        </li>
+        <li><p>Overview</p></li>
+        <li><p>Technologies used</p></li>
+        <li><p>Files structure</p></li>
+        <li><p>Database structure</p></li>
+        <li><p>Endpoints demonstration Postman</p></li>
+        <li><p>Endpoints demonstration Swagger</p></li>
+        <li><p>Tests description</p></li>
+        <li><p>Description of principles</p></li>
+        <li><p>Conclusion</p></li>
     </ul>
     <p style="margin-bottom: 30px"></p>
 </div>
 
 <div>
     <h3>Technologies used</h3>
+    <p></p>
     <ul>
-        <li>
-            <p>Spring boot framework (as a base of this project)</p>
-            <p>Mapstruct (DTO - Object - DTO converter for increasing data safety and usability)</p>
-            <p>PostgreSQL</p>
-            <p>Database structure</p>
-            <p>Endpoints demonstration Postman</p>
-            <p>Endpoints demonstration Swagger</p>
-            <p>Tests description</p>
-            <p>Description of principles</p>
-            <p>Conclusion</p>
-        </li>
+        <li><p>Spring boot framework (as a base of this project)</p></li>
+        <li><p>Mapstruct (DTO - Object - DTO converter for increasing data safety and usability)</p></li>
+        <li><p>PostgreSQL</p></li>
+        <li><p>JUnit</p></li>
+        <li><p>Mockito</p></li>
+        <li><p>Swagger</p></li>
     </ul>
+</div>
+
+<div>
+    <h3>Files structure</h3>
+</div>
+
+<div>
+    <h3>Database structure</h3>
+
+    <img src="/database.jpg">
 </div>
