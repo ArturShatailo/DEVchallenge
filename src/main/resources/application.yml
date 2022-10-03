@@ -3,7 +3,7 @@ spring:
   # Database
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/devchallenge
+    url: jdbc:postgresql://localhost:5432/devchallenge_trust
     username: postgres
     password: Postgresql
   # JPA properties

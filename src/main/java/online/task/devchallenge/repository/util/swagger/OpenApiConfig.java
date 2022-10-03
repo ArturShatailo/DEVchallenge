@@ -1,4 +1,4 @@
-package online.task.devchallenge.util.config.swagger;
+package online.task.devchallenge.repository.util.swagger;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -14,8 +14,8 @@ public class OpenApiConfig {
         return new OpenAPI()
                 .components(new Components())
                 .info(new Info()
-                        .title("Shop CRUD API")
-                        .description(" Spring Boot RESTful service using springdoc-openapi and OpenAPI 3.")
+                        .title("Trust network API")
+                        .description("Spring Boot RESTful service using springdoc-openapi and OpenAPI 3.")
                         .version("v0.0.1"));
     }
 }
