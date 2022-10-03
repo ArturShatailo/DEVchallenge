@@ -1,4 +1,4 @@
-package online.task.devchallenge.PersonServiceTests;
+package online.task.devchallenge.PersonTests;
 
 import online.task.devchallenge.domain.Person;
 import online.task.devchallenge.repository.PersonRepository;
@@ -38,7 +38,7 @@ public class PersonCrudServiceTests {
         Set<String> topics = new HashSet<>();
         topics.add("Books");
         topics.add("Food");
-        person.setId("Mark");
+        person.setId("Den");
         person.setTopics(topics);
 
         when(personRepository
@@ -56,7 +56,7 @@ public class PersonCrudServiceTests {
 
     @Test
     public void whenGivenId_shouldReturnPerson_ifFound() {
-        String testId = "Mark";
+        String testId = "Den";
         Set<String> topics = new HashSet<>();
         topics.add("Books");
         topics.add("Food");
@@ -85,7 +85,7 @@ public class PersonCrudServiceTests {
 
     @Test
     public void whenGetAll_shouldReturnPersonsList() {
-        String testId = "Mark", testIdA = "Diana";
+        String testId = "Den", testIdA = "Diana";
         Set<String> topics = new HashSet<>();
         topics.add("Books");
         topics.add("Food");
@@ -132,7 +132,7 @@ public class PersonCrudServiceTests {
         Map<String, Integer> connections = new HashMap<>();
         connections.put("Ken", 10);
         connections.put("Diana", 6);
-        person.setId("Mark");
+        person.setId("Den");
         person.setConnections(connections);
 
         Map<String, Integer> connectionsUpdate = new HashMap<>();
@@ -144,16 +144,16 @@ public class PersonCrudServiceTests {
         connectionsA.put("Ken", 10);
         connectionsA.put("Diana", 7);
         connectionsA.put("Nancy", 10);
-        personA.setId("Mark");
+        personA.setId("Den");
         personA.setConnections(connectionsA);
 
         when(personRepository
-                .findById("Mark"))
+                .findById("Den"))
                 .thenReturn(Optional.of(person));
-        person = personServiceBean.getPersonById("Mark");
+        person = personServiceBean.getPersonById("Den");
         person.getConnections().putAll(connectionsUpdate);
 
-        connectionsUpdate = personServiceBean.updateConnections("Mark", connectionsUpdate);
+        connectionsUpdate = personServiceBean.updateConnections("Den", connectionsUpdate);
 
         assertThat(personA.getConnections()).containsAllEntriesOf(connectionsUpdate);
 
@@ -166,7 +166,7 @@ public class PersonCrudServiceTests {
         Map<String, Integer> connections = new HashMap<>();
         connections.put("Ken", 10);
         connections.put("Diana", 6);
-        person.setId("Mark");
+        person.setId("Den");
         person.setConnections(connections);
 
         Map<String, Integer> connectionsUpdate = new HashMap<>();
@@ -178,14 +178,14 @@ public class PersonCrudServiceTests {
         personA.setConnections(connectionsA);
 
         when(personRepository
-                .findById("Mark"))
+                .findById("Den"))
                 .thenReturn(Optional.of(person));
-        person = personServiceBean.getPersonById("Mark");
+        person = personServiceBean.getPersonById("Den");
 
         for (String key : connectionsUpdate.keySet())
             person.getConnections().remove(key);
 
-        connectionsUpdate = personServiceBean.deleteConnections("Mark", connectionsUpdate);
+        connectionsUpdate = personServiceBean.deleteConnections("Den", connectionsUpdate);
 
         assertThat(personA.getConnections()).doesNotContainEntry("Diana", connectionsUpdate.get("Diana"));
 
